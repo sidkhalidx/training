@@ -1,0 +1,7 @@
+<br/><br/>
+<% @patients.each do |p| %>
+    <%= link_to p.name, [p] %>
+    <br/>
+<% end %>
+<%= render partial: 'patient', collection: @patients %>
+

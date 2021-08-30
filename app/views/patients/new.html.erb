@@ -1,0 +1,12 @@
+
+<br/>
+<h1>creating a new patient</h1>
+<%= form_with model: @patients, local: true do |p| %>
+    <%= p.label :name %>
+    <%= p.text_field :name %>
+    <br/>
+    <%= p.label :disease %>
+    <%= p.text_area :disease %>
+    <br/>
+    <%= p.submit 'create' %>
+<% end %>

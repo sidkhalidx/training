@@ -1,0 +1,56 @@
+<br/>
+<br/>
+<br/>
+<%= distance_of_time_in_words(@patient.created_at, Time.now, include_seconds: true) %>
+<%= select_date(@patient.created_at+7.days) %>
+<%= select_year(Date.today) %>
+<%= check_box("patient", "validate") %>name<br/>
+
+<%= password_field(:login, :pass) %>
+<%= radio_button("article", "category", "rails") %>
+<%= radio_button("article", "category", "java") %>
+
+<%= select("article", "person_id", Patient.all.collect { |p| [ p.name, p.id ] }, { include_blank: true }) %>
+<br/>
+<%= time_zone_select( "user", "time_zone") %>
+<%= strip_links('<a href="http://rubyonrails.org">Ruby on Rails</a>') %>
+<%= sanitize @patient.disease %>
+<%= options_for_select([ "VISA", "MasterCard" ]) %>
+
+ <%= debug(@patient) %>
+</br>
+<%= @patient.name %>
+<br/>
+<%= @patient.disease %>
+<h3>Doctors</h3>
+<% @patient.doctors.each do |d| %>
+    <%= link_to d.name, [@patient, d] %><br/>
+    <%= d.degree %>
+    <br/>
+    <%= @patient %>
+    <%= [d.patient, d] %><br/>
+    <%= link_to 'Destroy', [@patient, d], method: :delete %>
+    <hr>
+<% end %>
+<%= render "abc", full: false %>
+<%= render @patient %>
+<%=  %>
+<h3>Add a doctor</h1>
+
+<%= image_tag "mount.jpg" %>
+<%= form_with model: [@patient, @patient.doctors.build], remote: true do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :name_confirmation %>
+    <%= f.text_field :name_confirmation %>
+    <br/><br/>
+    <%= f.label :degree %>
+    <%= f.text_field :degree %>
+    <br/><br/>
+    <%= check_box("doctor", "validated") %> confirm
+    <br/>
+    <%= f.submit 'add it' %>
+<% end %>
+
+
+<%= link_to 'edit', edit_patient_path(@patient) %>

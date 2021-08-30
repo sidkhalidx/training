@@ -1,0 +1,9 @@
+<%= form_with model: @patient do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <br/>
+    <%= f.label :disease %>
+    <%= f.text_area :disease %>
+    <br/>
+    <%= f.submit 'update' %>
+<% end %>
